@@ -83,7 +83,7 @@ for (i in 1:dim(samples)[[1]]){
   samples[i, (tail(which(samples[i,,2] !=0), n = 1) + 1) :dim(samples)[[2]],1] <- 0 # can switch to other value
 }
 
-#FFT.test-------------------------------------------------------
+# FFT.test------------------------------------------------------------
 fft_samp <- array(0, c(length(sinus_samples_index), 5000, 2))
 fft_result <- apply(samples[, , 1], 1, function(row) fft(row))
 fft_result_real <- Re(fft_result/5000) # Re pulls real numbers, used normalization
@@ -98,7 +98,7 @@ sampling_rate <- 500
 # Plot the magnitude spectrum using real components.
 plot(frequencies, Mod(fft_samp[rec, ,1]), type = "b", xlab = "Frequency (Hz)", ylab = "Magnitude", main = "FFT ")
 
-#FSST-----------------------------------------------------------------
+#FSST -------------------------------------------------------------------
 fsst_dat <- data.frame(Signal = samples[rec, , 1],Time = 1:5000 / 500)
 par(mar = c(2.5, 0.5, 2.25, 1.5))
 fsst_dat<- fsst_dat[, c(2,1)]
